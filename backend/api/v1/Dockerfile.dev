@@ -1,0 +1,9 @@
+# base python image
+FROM python:3.8.0a4-alpine3.9
+
+# set working directory
+WORKDIR '/app'
+
+COPY ~/AirBnB_clone_v3/web_flask .
+
+RUN echo 'working'
