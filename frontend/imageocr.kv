@@ -1,0 +1,55 @@
+#:kivy 1.10.1
+
+WindowManager:
+	GetFilename:
+	
+	Results:
+
+<GetFilename>:
+    name: 'main'
+
+	BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserIconView:
+            id: filechooser
+
+        BoxLayout:
+            size_hint_y: None
+            Button:
+                text: "Cancel"
+                on_release:	root.manager.current = 'main'
+
+            Button:
+                text: "Select File"
+                on_release: 
+					root.manager.current = 'results' if root.load(filechooser.path, filechooser.selection) is True else 'main'
+							
+
+		BoxLayout:
+	    	size_hint_y: None
+			orientation: "horizontal"
+			TextInput:
+				id: filename_text
+				multiline: False
+				hint_text: "Enter Absolute Path of File Here"
+				font_size: 30
+			Button:
+				text: "Submit"
+				on_release:
+					root.manager.current = 'results' if root.store_filename_write() is True else 'main'
+
+<Results>:
+	name: 'results'
+
+	on_pre_enter: self.get_info()
+
+	BoxLayout:
+		orientation: 'vertical'
+		Label:
+			id: 'api_results'
+			text: root.api_results
+		Button:
+			text: 'Submit Another Image'
+			on_press: root.manager.current = 'main'
