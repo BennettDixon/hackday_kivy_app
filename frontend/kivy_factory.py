@@ -11,6 +11,7 @@ from kivy.properties import ObjectProperty
 from kivy.properties import StringProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang import Builder
+from tools import verify_image
 
 
 class GetFilename(BoxLayout, Screen):
@@ -23,14 +24,17 @@ class GetFilename(BoxLayout, Screen):
         filename = self.ids['filename_text'].text
         # TODO call backend here
         # Return true only if the file is valid
+        if verify_image(filename) is False:
+            return False
         results = 'insert backend results here'
-        print(type(self), id(self))
         self.manager.get_screen('results').api_results = results
         return True
     
     def load(self, path, filename, *args):
         print(path, filename)
         # TODO call backend here
+        if verify_image(filename) is False:
+            return False
         results = 'insert backend results here!'
         self.manager.get_screen('results').api_results = results
         return True
