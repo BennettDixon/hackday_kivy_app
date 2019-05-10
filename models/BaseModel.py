@@ -37,4 +37,21 @@ class BaseModel:
         """returns a dictionary containing all keys/values of the instance"""
         new_dict = self.__dict__.copy()
         new_dict["__class__"] = self.__class__.__name__
+        new_dict = self.prettify(new_dict)
         return new_dict
+
+    @classmethod
+    def prettify(cls, my_dict):
+        """
+        Removes the name mangling caused by private
+        instance attributes by removing the class name
+        and the 3 underscores
+        """
+        my_items = my_dict.copy()
+        for key, value in my_items.items():
+            if key[0] == '_' and key is not '__class__':
+                mangled = len(my_dict["__class__"]) + 3
+                new_key = key[mangled:]
+                my_dict[new_key] = my_items[key]
+                del my_dict[key]
+        return my_dict
