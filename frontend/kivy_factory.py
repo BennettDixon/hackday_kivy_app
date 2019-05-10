@@ -14,6 +14,7 @@ from kivy.lang import Builder
 
 
 class GetFilename(BoxLayout, Screen):
+    """Defines the GetFileName class -> Screen for manually inputting image pathname"""
     load = ObjectProperty(None)
     cancel = ObjectProperty(None)
     filename_write = StringProperty('')
@@ -21,15 +22,32 @@ class GetFilename(BoxLayout, Screen):
     def store_filename_write(self, *args):
         filename = self.ids['filename_text'].text
         # TODO call backend here
+        # Return true only if the file is valid
         results = 'insert backend results here'
+        print(type(self), id(self))
         self.manager.get_screen('results').api_results = results
         return True
-        
+    
+    def load(self, path, filename, *args):
+        print(path, filename)
+        # TODO call backend here
+        results = 'insert backend results here!'
+        self.manager.get_screen('results').api_results = results
+        return True
+
 class Results(Screen):
     api_results = StringProperty('')
 
     def get_info(self):
         print(self.api_results)
+
+class LandingPage(GridLayout, Screen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+        Window.bind(on_dropfile=self._on_file_drop)
+
+    def camera_button(self):
 
 class WindowManager(ScreenManager):
     pass

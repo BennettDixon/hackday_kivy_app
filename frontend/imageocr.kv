@@ -23,7 +23,9 @@ WindowManager:
 
             Button:
                 text: "Select File"
-                on_release: root.load(filechooser.path, filechooser.selection)
+                on_release: 
+					root.manager.current = 'results' if root.load(filechooser.path, filechooser.selection) is True else 'main'
+							
 
 		BoxLayout:
 	    	size_hint_y: None
