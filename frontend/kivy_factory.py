@@ -41,14 +41,6 @@ class Results(Screen):
     def get_info(self):
         print(self.api_results)
 
-class LandingPage(GridLayout, Screen):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-
-        Window.bind(on_dropfile=self._on_file_drop)
-
-    def camera_button(self):
-
 class WindowManager(ScreenManager):
     pass
 

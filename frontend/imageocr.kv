@@ -19,7 +19,7 @@ WindowManager:
             size_hint_y: None
             Button:
                 text: "Cancel"
-                on_release: root.cancel()
+                on_release:	root.manager.current = 'main'
 
             Button:
                 text: "Select File"
