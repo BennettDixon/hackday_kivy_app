@@ -58,7 +58,7 @@ def process_image(debug=True):
             type(error)
         )
         return msg, 500
-    return caption_response.to_dict()
+    return jsonify(caption_response.to_dict())
 
 
 @app_views.route('/testing', methods=['GET'], strict_slashes=False)
