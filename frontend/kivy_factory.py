@@ -20,14 +20,16 @@ class GetFilename(BoxLayout, Screen):
     
     def store_filename_write(self, *args):
         filename = self.ids['filename_text'].text
+        # TODO call backend here
+        results = 'insert backend results here'
+        self.manager.get_screen('results').api_results = results
         return True
         
 class Results(Screen):
+    api_results = StringProperty('')
 
-    @classmethod
-    def get_image(self, filename):
-        print('in get_image')
-        self.result = 'I CHANGED'
+    def get_info(self):
+        print(self.api_results)
 
 class WindowManager(ScreenManager):
     pass

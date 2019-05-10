@@ -2,6 +2,7 @@
 
 WindowManager:
 	GetFilename:
+	
 	Results:
 
 <GetFilename>:
@@ -39,12 +40,14 @@ WindowManager:
 
 <Results>:
 	name: 'results'
-	
+
+	on_pre_enter: self.get_info()
+
 	BoxLayout:
 		orientation: 'vertical'
 		Label:
 			id: 'api_results'
-			text: 'waiting'
+			text: root.api_results
 		Button:
 			text: 'Submit Another Image'
 			on_press: root.manager.current = 'main'
