@@ -24,8 +24,7 @@ def convert_image(filename):
     data = image.to_dict()
     headers = {'Content-Type': 'application/json'}
     r = requests.post(url, data=data, headers=headers)
-    print(r.status_code)
-
+    return r.json()
 
 if __name__ == '__main__':
     print(verify_image('practice.jpeg'))
