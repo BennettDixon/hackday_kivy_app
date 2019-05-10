@@ -11,7 +11,7 @@ from kivy.properties import ObjectProperty
 from kivy.properties import StringProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang import Builder
-from tools import verify_image
+from tools import verify_image, convert_image
 
 
 class GetFilename(BoxLayout, Screen):

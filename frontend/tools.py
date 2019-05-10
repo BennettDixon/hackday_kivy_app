@@ -1,6 +1,6 @@
 """This module defines functions to be used with the Kivy app"""
 import os
-from PIL import Image
+import requests
 
 def verify_image(filename):
     """Verifies whether the file exists"""
@@ -9,16 +9,16 @@ def verify_image(filename):
         extension = filename.split('.')
         if len(extension) == 2:
             if extension[1] in image_extensions:
-                return True
+                return os.path.isfile(filename)
 
     return False
 
 def convert_image(filename):
     """Converts the image and prepares it for the backend API"""
-    with Image.open(filename) as image: 
-        pass
+    url = '0.0.0.0:5000/api/v1/image_ocr'
 
 if __name__ == '__main__':
     print(verify_image('practice.jpeg'))
     print(verify_image('wersdfsdfasdf.txt'))
     print(verify_image('he.png'))
+    print(verify_image('file.png'))
