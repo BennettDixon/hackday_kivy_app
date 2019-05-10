@@ -22,22 +22,19 @@ class GetFilename(BoxLayout, Screen):
     
     def store_filename_write(self, *args):
         filename = self.ids['filename_text'].text
-        # TODO call backend here
-        # Return true only if the file is valid
-        #if verify_image(filename) is False:
-        #    return False
-        convert_image(filename)
+        if verify_image(filename) is False:
+            return False
+        json = convert_image(filename)
         results = 'insert backend results here'
         self.manager.get_screen('results').api_results = results
         return True
     
     def load(self, path, filename, *args):
-        # TODO call backend here
-        #if verify_image(filename) is False:
-        #    return False
         if len(filename) < 1:
             return False
-        convert_image(filename[0])
+        if verify_image(filename[0]) is False:
+            return False
+        json = convert_image(filename[0])
         results = 'insert backend results here!'
         self.manager.get_screen('results').api_results = results
         return True
