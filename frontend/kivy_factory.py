@@ -11,7 +11,7 @@ from kivy.properties import ObjectProperty
 from kivy.properties import StringProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang import Builder
-from tools import verify_image
+from .tools import verify_image, convert_image
 
 
 class GetFilename(BoxLayout, Screen):
@@ -24,17 +24,20 @@ class GetFilename(BoxLayout, Screen):
         filename = self.ids['filename_text'].text
         # TODO call backend here
         # Return true only if the file is valid
-        if verify_image(filename) is False:
-            return False
+        #if verify_image(filename) is False:
+        #    return False
+        convert_image(filename)
         results = 'insert backend results here'
         self.manager.get_screen('results').api_results = results
         return True
     
     def load(self, path, filename, *args):
-        print(path, filename)
         # TODO call backend here
-        if verify_image(filename) is False:
+        #if verify_image(filename) is False:
+        #    return False
+        if len(filename) < 1:
             return False
+        convert_image(filename[0])
         results = 'insert backend results here!'
         self.manager.get_screen('results').api_results = results
         return True
@@ -48,7 +51,7 @@ class Results(Screen):
 class WindowManager(ScreenManager):
     pass
 
-kv = Builder.load_file('imageocr.kv')
+kv = Builder.load_file('frontend/imageocr.kv')
 
 class ImageOCRApp(App):
     """Defines the ImageOCR Application Class"""
