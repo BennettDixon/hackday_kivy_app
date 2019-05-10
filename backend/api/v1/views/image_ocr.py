@@ -42,21 +42,22 @@ def process_image(debug=True):
         params={"visualFeatures": "Description"},
         json={"url": img.get('url')}
     )
-    return jsonify(json.loads(response.text))
-    """
-    image_data = response.json().get('captions')
-    if image_data is None or type(image_data) is not dict:
+    # return jsonify(json.loads(response.text))
+
+    caption_data = response.json().get('description').get('captions')
+    if caption_data is None or type(caption_data) is not list:
         return jsonify({'error': 'Not a JSON'}), 402
 
     try:
-        caption_response = CaptionResponse(image_data.get('text'),
-                                           image_data.get('confidence'))
+        caption = sorted(caption_data, key=lambda d: d.get('confidence'))[-1]
+        caption_response = CaptionResponse(caption.get('text'),
+                                           caption.get('confidence'))
     except (ValueError, TypeError) as error:
         msg = '{"error": "{} raised when creating CaptionResponse"}'.format(
             type(error)
         )
         return msg, 500
-    return caption_response.to_dict() """
+    return caption_response.to_dict()
 
 
 @app_views.route('/testing', methods=['GET'], strict_slashes=False)
