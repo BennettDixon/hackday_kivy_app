@@ -15,7 +15,7 @@ import requests
     '/image_ocr',
     methods=['POST'],
     strict_slashes=False)
-def process_image(debug=True):
+def process_image(debug=False):
     """Processes an image by:
         -> sending the file to Vision Azure api
         -> returns a dictionary containing the caption
@@ -24,11 +24,13 @@ def process_image(debug=True):
     """
     # Content-Type we are posting, testing uses json
     content_type = ''
+    img = None
     if debug is True:
         content_type = 'application/json'
+        img = request.get_json()
     else:
         content_type = 'application/octet-stream'
-    img = request.get_json()
+        img = request.text
     # Verify Azure Vision Subscription Key
     subscription_key = vision_subscription_key
     # Azure Vision API URL for detecting objects
@@ -41,7 +43,7 @@ def process_image(debug=True):
         url,
         headers=headers,
         params={"visualFeatures": "Description"},
-        json={"url": img.get('url')}
+        data=img
     )
     # return jsonify(json.loads(response.text))
 
