@@ -20,10 +20,11 @@ def convert_image(filename):
     url = 'http://0.0.0.0:5000/api/v1/image_ocr'
     print(filename)
     with open(filename, 'rb') as f:
-        image = ImageStore(0, 0, f.read())
-    data = image.to_dict()
-    headers = {'Content-Type': 'application/json'}
+        image = f.read()
+    data = image
+    headers = {'Content-Type': 'application/octet-stream'}
     r = requests.post(url, data=data, headers=headers)
+    print(r.json())
     return r.json()
 
 if __name__ == '__main__':

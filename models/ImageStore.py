@@ -9,7 +9,7 @@ class ImageStore(BaseModel):
     """
     width = 0
     height = 0
-    byte_arr = 0
+    byte_array = 0
     def __init__(self, width, height, byte_arr):
         self.width = width
         self.height = height

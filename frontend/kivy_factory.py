@@ -25,7 +25,7 @@ class GetFilename(BoxLayout, Screen):
         if verify_image(filename) is False:
             return False
         json = convert_image(filename)
-        results = 'insert backend results here'
+        results = '{}, {}'.format(json.get('caption'), json.get('confidence'))
         self.manager.get_screen('results').api_results = results
         self.manager.get_screen('results').source = filename
         return True
@@ -36,7 +36,7 @@ class GetFilename(BoxLayout, Screen):
         if verify_image(filename[0]) is False:
             return False
         json = convert_image(filename[0])
-        results = 'insert backend results here!'
+        results = '{}, {}'.format(json.get('caption'), json.get('confidence'))
         self.manager.get_screen('results').api_results = results
         self.manager.get_screen('results').source = filename[0]
         return True
