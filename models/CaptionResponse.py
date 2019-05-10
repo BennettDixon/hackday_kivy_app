@@ -12,6 +12,7 @@ class CaptionResponse(BaseModel):
         """custom init method for CaptionResponse"""
         self.caption = caption
         self.confidence = confidence
+        super().__init__()
 
     @property
     def caption(self):

@@ -1,16 +1,20 @@
 #!/usr/bin/python3
 """Image store class for storing image data
 """
-from models.base_model import BaseModel
+from models.BaseModel import BaseModel
 
 # Create your models here.
 class ImageStore(BaseModel):
     """ Image class for representing objects received in posts
     """
+    width = 0
+    height = 0
+    byte_arr = 0
     def __init__(self, width, height, byte_arr):
         self.width = width
         self.height = height
         self.byte_array = byte_arr
+        super().__init__()
 
     @property
     def width(self):
