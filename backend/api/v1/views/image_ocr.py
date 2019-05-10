@@ -14,7 +14,7 @@ import requests
     '/image_ocr',
     methods=['POST'],
     strict_slashes=False)
-def process_image(debug=False):
+def process_image(debug=True):
     """Processes an image by:
         -> sending the file to Vision Azure api
         -> returns a dictionary containing the caption
@@ -35,12 +35,12 @@ def process_image(debug=False):
 
     headers = {'Ocp-Apim-Subscription-Key': subscription_key,
                'Content-Type': content_type}
-
     # POST request to Azure API to get image data
     response = requests.post(
         url,
         headers=headers,
-        data=img,
+        params={"visualFeatures": "Description"},
+        json={"url": img.get('url')}
     )
     return jsonify(json.loads(response.text))
     """
