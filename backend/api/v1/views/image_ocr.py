@@ -6,6 +6,7 @@ them to the Vision Azure API.
 from api.v1.views import app_views
 from flask import Flask, jsonify, request, abort
 from api.v1.settings import vision_subscription_key
+from api.v1.models.CaptionResponse import CaptionResponse
 import json
 import requests
 

@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """Image store class for storing image data
 """
-from models.BaseModel import BaseModel
+
+from .BaseModel import BaseModel
 
 # Create your models here.
 class CaptionResponse(BaseModel):
