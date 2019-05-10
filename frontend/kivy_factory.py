@@ -27,6 +27,7 @@ class GetFilename(BoxLayout, Screen):
         json = convert_image(filename)
         results = 'insert backend results here'
         self.manager.get_screen('results').api_results = results
+        self.manager.get_screen('results').source = filename
         return True
     
     def load(self, path, filename, *args):
@@ -37,10 +38,12 @@ class GetFilename(BoxLayout, Screen):
         json = convert_image(filename[0])
         results = 'insert backend results here!'
         self.manager.get_screen('results').api_results = results
+        self.manager.get_screen('results').source = filename[0]
         return True
 
 class Results(Screen):
     api_results = StringProperty('')
+    source = StringProperty('')
 
     def get_info(self):
         print(self.api_results)
