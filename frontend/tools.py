@@ -2,7 +2,7 @@
 import os
 import requests
 
-from models.ImageStore import ImageStore
+#from models.ImageStore import ImageStore
 
 def verify_image(filename):
     """Verifies whether the file exists"""
@@ -10,7 +10,7 @@ def verify_image(filename):
     if type(filename) is str:
         extension = filename.split('.')
         if len(extension) == 2:
-            if extension[1] in image_extensions:
+            if extension[1].lower() in image_extensions:
                 return os.path.isfile(filename)
 
     return False
@@ -32,3 +32,4 @@ if __name__ == '__main__':
     print(verify_image('wersdfsdfasdf.txt'))
     print(verify_image('he.png'))
     print(verify_image('file.png'))
+    print(verify_image('hi.JPG'))
