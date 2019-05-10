@@ -48,8 +48,8 @@ class BaseModel:
         and the 3 underscores
         """
         my_items = my_dict.copy()
-        for key, value in my_items.items():
-            if key[0] == '_' and key is not '__class__':
+        for key in my_items.keys():
+            if '_{}__'.format(my_dict["__class__"]) in key:
                 mangled = len(my_dict["__class__"]) + 3
                 new_key = key[mangled:]
                 my_dict[new_key] = my_items[key]
