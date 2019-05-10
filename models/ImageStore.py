@@ -14,10 +14,12 @@ class ImageStore(BaseModel):
 
     @property
     def width(self):
+        """getter for width attribute"""
         return self.__width
 
     @width.setter
     def width(self, value):
+        """setter for width attribute"""
         if (value is None or not isinstance(value, int)):
             raise TypeError("width of Image must be int")
         elif (value < 0):
@@ -27,10 +29,12 @@ class ImageStore(BaseModel):
 
     @property
     def height(self):
+        """getter for height"""
         return self.__height
 
     @height.setter
     def height(self, value):
+        """setter for height"""
         if (value is None or not isinstance(value, int)):
             raise TypeError("height of Image must be int")
         elif (value < 0):
@@ -40,10 +44,12 @@ class ImageStore(BaseModel):
 
     @property
     def byte_array(self):
+        """getter for image data, byte_array should be base_64 encoded"""
         return self.__byte_array
 
     @byte_array.setter
     def byte_array(self, value):
+        """setter for image data, TODO base64 encode"""
         if (value is None):
             raise TypeError("width of Image must be not None")
 
