@@ -38,9 +38,9 @@ def process_image(img):
         return jsonify({'error': 'Not a JSON'}), 400
 
     try:
-        caption_response = CaptionResponse(post_data.get('caption'),
-                                           post_data.get('confidence'))
-    except ValueError, TypeError:
+        caption_response = CaptionResponse(image_data.get('caption'),
+                                           image_data.get('confidence'))
+    except (ValueError, TypeError) as error:
         abort(500) # TODO - verify this abort method, should we return a JSON error dict with a code?
     return caption_response.to_dict()
 
