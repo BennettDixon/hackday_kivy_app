@@ -1,2 +1,4 @@
 # git ignore file
 *__pycache__*
+# secret info!
+*settings/__init__.py
