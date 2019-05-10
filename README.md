@@ -32,6 +32,7 @@ $ sudo apt-get install python3-kivy
 
 ## :blue_book: Authors
 * **Bennett Dixon** - [@BennettDixon](https://github.com/BennettDixon)
+* **Susan Su** - [@suhearsawho](https://github.com/suhearsawho)
 
 ## :mag: License
 
