@@ -7,6 +7,7 @@ WORKDIR '/app'
 RUN pip3 install flask && \
     pip3 install requests
 
-COPY . .
+COPY ./backend .
+COPY ./models ./api/v1/models
 
 CMD ["python3", "-m", "api.v1.app"]
