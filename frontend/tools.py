@@ -2,6 +2,8 @@
 import os
 import requests
 
+from models.ImageStore import ImageStore
+
 def verify_image(filename):
     """Verifies whether the file exists"""
     image_extensions = ['tif', 'jpg', 'gif', 'png', 'jpeg']
@@ -15,7 +17,15 @@ def verify_image(filename):
 
 def convert_image(filename):
     """Converts the image and prepares it for the backend API"""
-    url = '0.0.0.0:5000/api/v1/image_ocr'
+    url = 'http://0.0.0.0:5000/api/v1/image_ocr'
+    print(filename)
+    with open(filename, 'rb') as f:
+        image = ImageStore(0, 0, f.read())
+    data = image.to_dict()
+    headers = {'Content-Type': 'application/json'}
+    r = requests.post(url, data=data, headers=headers)
+    print(r.status_code)
+
 
 if __name__ == '__main__':
     print(verify_image('practice.jpeg'))
