@@ -43,6 +43,8 @@ WindowManager:
 <Results>:
 	name: 'results'
 
+    size: root.size
+    pos: root.pos
 	on_pre_enter: self.get_info()
 
 	BoxLayout:
@@ -54,6 +56,9 @@ WindowManager:
 		Label:
 			id: 'api_results'
 			text: root.api_results
+			font_size: 40
+
 		Button:
 			text: 'Submit Another Image'
 			on_press: root.manager.current = 'main'
+			size: root.x, root.height / 5
