@@ -30,7 +30,6 @@ def process_image(debug=False):
     else:
         content_type = 'application/octet-stream'
     img = request.data
-    print(img)
     with open('/test.png', 'wb+') as myF:
         myF.write(bytes(img))
     # Verify Azure Vision Subscription Key
@@ -48,7 +47,6 @@ def process_image(debug=False):
         data=img
     )
     # return jsonify(json.loads(response.text))
-    print(response.json())
     caption_data = response.json().get('description').get('captions')
     if caption_data is None or type(caption_data) is not list:
         return jsonify({'error': 'Not a JSON'}), 402
